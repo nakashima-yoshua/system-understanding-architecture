@@ -1,5 +1,7 @@
 # System Understanding Architecture
 
+**English** | [日本語](README.ja.md)
+
 Reference architecture for integrating system understanding, documentation, source code, tests, and AI context in one Git repository.
 
 ## Purpose
@@ -25,9 +27,11 @@ Navigation must also work in reverse: from code or data structures back to the b
 ```text
 .
 ├─ README.md
+├─ README.ja.md
 ├─ docs/
 │  ├─ understanding/
 │  │  ├─ README.md
+│  │  ├─ ja/                 # Japanese
 │  │  ├─ system-overview.md
 │  │  ├─ business-map.md
 │  │  ├─ capability-map.md
@@ -35,16 +39,7 @@ Navigation must also work in reverse: from code or data structures back to the b
 │  │  ├─ change-guide.md
 │  │  └─ glossary.md
 │  ├─ requirements/
-│  │  ├─ README.md
-│  │  ├─ business/
-│  │  ├─ usecases/
-│  │  └─ functional/
 │  ├─ design/
-│  │  ├─ README.md
-│  │  ├─ application/
-│  │  ├─ database/
-│  │  ├─ interface/
-│  │  └─ batch/
 │  ├─ decisions/
 │  └─ templates/
 ├─ src/
@@ -52,6 +47,8 @@ Navigation must also work in reverse: from code or data structures back to the b
 ├─ db/
 └─ infra/
 ```
+
+Japanese documentation mirrors the English information architecture under `ja/` directories. Stable IDs, code identifiers, paths, and artifact responsibilities remain language-independent.
 
 ## Reading order
 
@@ -91,6 +88,13 @@ Do not annotate every method with IDs. Traceability should be maintained primari
 - Every feature should have a discoverable path from business intent to code and tests.
 - Review not only whether a change is correct, but whether a new reader can discover and understand it.
 - Prefer Markdown and repository-native links so the repository remains portable and tool-independent.
+
+## Localization policy
+
+- Keep stable IDs, code identifiers, and repository paths language-independent.
+- Keep translated documents semantically aligned rather than translating identifiers.
+- Update affected translations in the same pull request when authoritative content changes.
+- Add future languages using the same language-code directory convention.
 
 ## AI usage
 
