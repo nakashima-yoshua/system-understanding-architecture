@@ -10,6 +10,8 @@
 
 従来の要件、設計書、ソースコード、DB資産、テスト、インフラを正本として維持し、その上に薄い**理解レイヤー（Understanding Layer）**を配置します。
 
+AI開発では、AIも同じ知識アーキテクチャを利用しますが、未信頼の実行主体として扱います。人は意味、境界、Invariant、リスク受容、承認を所有し、AIは限定された範囲で探索、実装、検査、証跡整理を担当します。
+
 ## 情報構造
 
 ```text
@@ -18,6 +20,8 @@
 要件 / 設計 / 意思決定
     ↓
 実装 / DB / テスト / インフラ
+    ↓
+自動検査の証跡 / 人間レビュー
 ```
 
 ナビゲーションは逆方向にも成立させます。コードやデータ構造から、それが存在する理由となった業務目的・要件・意思決定まで遡れることを目標とします。
@@ -26,14 +30,17 @@
 
 ```text
 .
+├─ AGENTS.md                 # AI作業規則
 ├─ README.md                 # English entry point
 ├─ README.ja.md              # 日本語エントリーポイント
 ├─ docs/
 │  ├─ understanding/         # 理解レイヤー
+│  │  ├─ invariants.md
+│  │  └─ ai-development-policy.md
 │  ├─ requirements/          # 要件
 │  ├─ design/                # 設計
 │  ├─ decisions/             # ADR
-│  └─ templates/             # テンプレート
+│  └─ templates/             # Change Contract / Human Review等
 ├─ src/                      # ソースコード
 ├─ tests/                    # テスト
 ├─ db/                       # DB資産
@@ -48,8 +55,9 @@
 2. [業務マップ](docs/understanding/ja/business-map.md)
 3. [ケイパビリティマップ](docs/understanding/ja/capability-map.md)
 4. [アーキテクチャマップ](docs/understanding/ja/architecture-map.md)
-5. [変更ガイド](docs/understanding/ja/change-guide.md)
-6. 要件、設計、ADR、コード、テスト、DB、インフラの詳細へ進む
+5. [Invariant](docs/understanding/ja/invariants.md)
+6. [変更ガイド](docs/understanding/ja/change-guide.md)
+7. 要件、設計、ADR、コード、テスト、DB、インフラの詳細へ進む
 
 ## 理解設計の共通契約
 
@@ -64,14 +72,16 @@
 
 ## トレーサビリティ
 
-業務ケイパビリティ、要件、ユースケース、アーキテクチャ上の意思決定には、言語に依存しない安定したIDを使用します。
+意味のある境界・ルールには、言語に依存しない安定したIDを使用します。
 
 - `CAP-BILLING`
+- `BR-BILL-001`
 - `REQ-BILL-001`
 - `UC-BILL-001`
+- `INV-BILL-001`
 - `ADR-0001`
 
-すべてのメソッドへIDを付与するのではなく、ケイパビリティ、モジュール、API、バッチ、テーブル、テストなど意味のある境界でトレーサビリティを維持します。
+すべてのメソッドへIDを付与するのではなく、ケイパビリティ、ルール、モジュール、API、バッチ、テーブル、テストなど意味のある境界でトレーサビリティを維持します。
 
 ## 運用ルール
 
@@ -83,24 +93,25 @@
 
 ## 多言語化方針
 
-英語版をルートの標準構造として維持し、日本語版は対応する `ja/` ディレクトリまたは `README.ja.md` に配置します。
-
 - 技術ID、パス、コード識別子は翻訳しない。
 - 内容の意味と責任範囲を言語間で一致させる。
 - 一方の言語で仕様上の変更が発生した場合、対応する翻訳も同じPRで更新する。
 - 将来別言語を追加する場合も、同じ規則で言語コードのディレクトリを追加する。
 
-## AI利用
+## AI開発
 
-AIエージェントもリポジトリ全体を無差別に検索するのではなく、理解レイヤーから探索を開始します。
+AIエージェントはリポジトリ全体を無差別に検索せず、理解レイヤーから探索を開始します。
 
 ```text
 README
   → システム概要
   → 業務 / ケイパビリティマップ
+  → Invariant
   → 関連要件 / ADR
   → 設計
   → ソース / DB / テスト
 ```
 
-これにより、人間とAIが同じ知識アーキテクチャを利用できます。
+振る舞いを変更する作業は [Change Contract](docs/templates/ja/change-contract-template.md) で境界を定義します。AIの作業完了状態は `HUMAN_REVIEW_REQUIRED` とし、[Human Review Request](docs/templates/ja/human-review-request-template.md) を業務意味から高リスク実装の順に提出します。
+
+責任、証跡、最小権限、停止条件、承認規則は [AI開発ポリシー](docs/understanding/ja/ai-development-policy.md) と `AGENTS.md` を参照します。
