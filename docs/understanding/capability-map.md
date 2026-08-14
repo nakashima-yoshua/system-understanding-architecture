@@ -4,6 +4,8 @@
 
 Bridge business intent and implementation. A capability is the preferred traceability unit because it is stable enough for business discussion and concrete enough to map to requirements, modules, data, interfaces, and tests.
 
+Think of a capability as **a business outcome the system can provide**, not as an individual screen, method, or implementation module.
+
 ## Capability template
 
 ### `CAP-EXAMPLE` — Example Capability
@@ -23,12 +25,19 @@ Where it sits in the larger business process.
 Input → Processing → Output
 ```
 
+**Human mental model**
+- Main business rules and applicable invariants
+- Data ownership
+- External dependencies / contracts
+- Major failure modes and recovery concerns
+
 **Related artifacts**
 
 | Type | Link / ID |
 |---|---|
 | Requirements | `REQ-EXAMPLE-001` |
 | Use cases | `UC-EXAMPLE-001` |
+| Invariants | `INV-EXAMPLE-001` |
 | Decisions | `ADR-0001` |
 | Application | `src/...` |
 | Database | `db/...` |
