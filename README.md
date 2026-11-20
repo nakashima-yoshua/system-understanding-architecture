@@ -123,3 +123,8 @@ README
 Behavior-changing work should use a [Change Contract](docs/templates/change-contract-template.md). AI work ends in `HUMAN_REVIEW_REQUIRED` and should produce a [Human Review Request](docs/templates/human-review-request-template.md) ordered from business meaning to high-risk implementation details.
 
 See [AI Development Policy](docs/understanding/ai-development-policy.md) and `AGENTS.md` for responsibility, evidence, least-privilege, stop, and approval rules.
+
+## Contributor onboarding and related repositories
+
+- [New contributor onboarding guide](docs/onboarding/README.md) and [project-specific template](docs/templates/onboarding-template.md).
+- [Related repositories and ownership boundaries](docs/repository-relationships.md).

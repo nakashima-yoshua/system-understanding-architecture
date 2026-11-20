@@ -115,3 +115,8 @@ README
 振る舞いを変更する作業は [Change Contract](docs/templates/ja/change-contract-template.md) で境界を定義します。AIの作業完了状態は `HUMAN_REVIEW_REQUIRED` とし、[Human Review Request](docs/templates/ja/human-review-request-template.md) を業務意味から高リスク実装の順に提出します。
 
 責任、証跡、最小権限、停止条件、承認規則は [AI開発ポリシー](docs/understanding/ja/ai-development-policy.md) と `AGENTS.md` を参照します。
+
+## 新規参加者と関連リポジトリ
+
+- [オンボーディング手順](docs/onboarding/ja/README.md)と[導入先テンプレート](docs/templates/ja/onboarding-template.md)。
+- [関連リポジトリと責務境界](docs/repository-relationships.md)。
